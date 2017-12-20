@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/web-style.css"/>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -18,7 +19,7 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -37,11 +38,13 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container-fluid content">  
+        <div style="width:100%;height:calc(100% - 80px);">
+            @RenderBody()
+        </div>        
         <hr />
-        <footer>
-            <p>&copy; 2017 - Web2._0</p>
+        <footer class="text-center">
+            <p>&copy; 2017 - Công ty TNHH HD Việt Nam</p>
         </footer>
     </div>
 

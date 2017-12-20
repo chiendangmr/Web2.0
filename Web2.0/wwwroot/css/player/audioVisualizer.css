@@ -1,0 +1,157 @@
+﻿/*
+    Document   : audoVisualizer
+    Created on : Jul 20, 2013, 7:17:47 PM
+    Author     : ductran
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*#meter1{
+  left: 2px;
+}
+#meter2{
+  left: 19px;
+}
+.meter {
+  position: absolute;
+  float: left;
+  width: 15px;
+  bottom: 0px;
+  background: url("../image/VuMeter2.png");
+  height: 0;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 15px 228px;
+  -webkit-transition: width .05s;
+}
+.vu_meter{
+  position: absolute;
+  top: 47px;
+  background: transparent;
+  float: left;
+  height: 228px;
+  width: 32px;
+}
+#peak1{
+  display: none;
+  left: 2px;
+  position: absolute;
+  margin-top: 0px;
+  background-position-y: 228px;
+  height: 7px;
+  width: 15px;
+  background: url("../image/VuMeter2.png");
+  background-size: 15px 228px;
+}
+#peak2{
+  display: none;
+  left: 19px;
+  position: absolute;
+  margin-top: 0px;
+  background-position-y: 228px;
+  height: 7px;
+  width: 15px;
+  background: url("../image/VuMeter2.png");
+  background-size: 15px 228px;
+}
+#meterGround1, #meterGround2{
+  height: 100%;
+  opacity: 0.4;
+}
+#meterGround1{
+  left: 2px;
+}
+#meterGround2{
+  left: 19px;
+}*/
+#fft{
+  position: absolute;
+  /* top: 50%; */
+  left: 0px;
+  margin-top: -100px;
+}
+
+.vu_meter .meter-channel{
+  position: relative;
+  float: left;
+}
+.vu_meter .meter-background{
+  height: 100%;
+  width: 100%;
+}
+.vu_meter .meter-background .meter-over{
+  height: 27%;
+  width: 100%;
+  background-color: #42de2d;
+}
+.vu_meter .meter-background .meter-warning{
+  height: 23%;
+  width: 100%;
+  background-color: #f10808;
+}
+.vu_meter .meter-background .meter-good{
+  height: 50%;
+  width: 100%;
+  background-color: #e4b435;
+}
+.vu_meter .meter-channel .meter{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #000;
+  opacity: 0.6;
+  top: 0;
+}
+.vu_meter .meter-rule{
+  height: 100%;
+  width: 18px;
+  position: absolute;
+  color: #fff;
+  font-size: 9px;
+  line-height: 12px;
+}
+.vu_meter .meter-rule-left{
+  top: 0;
+  left: -18px;
+}
+.vu_meter .meter-rule-right{
+  top: 0;
+  right: -18px;
+}
+.vu_meter .meter-rule .meter-rule-no{
+  position: absolute;
+  margin-top: -6px;
+  border-radius: 3px;
+  text-align: right;
+  padding-right: 2px;
+  background-color: #000;
+  width: 15px;
+}
+.vu_meter .meter-rule .meter-0{
+  top:0;
+}
+.vu_meter .meter-rule .meter--9{
+  top:20%;
+}
+.vu_meter .meter-rule .meter--18{
+  top:40%;
+}
+.vu_meter .meter-rule .meter--22{
+  top:48.8%;
+}
+.vu_meter .meter-rule .meter--26{
+  top:57.8%;
+}
+.vu_meter .meter-rule .meter--32{
+  top: 71.1%;
+}
+.vu_meter .meter-rule .meter---{
+  top:99%;
+}
+.vu_meter .peaker{
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top:100%;
+  background-color: #fafa55;
+}

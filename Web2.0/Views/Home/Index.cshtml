@@ -1,106 +1,142 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="~/js/player/subTitle.js"></script>
+    <script type="text/javascript" src="~/js/player/timecode.js"></script>
+    <script type="text/javascript" src="~/js/player/mediaelement.js"></script>
+    <script type="text/javascript" src="~/js/player/audioVisualizer.js"></script>
+    <script type="text/javascript" src="~/js/player/mediaelement-and-player.js"></script>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+    <link rel="stylesheet" href="~/css/player/subtitle.css">
+    <link rel="stylesheet" href="/css/player/player.css">
+    <link rel="stylesheet" href="/css/player/mediaelementplayer.css">
+    <link rel="stylesheet" href="/css/player/audioVisualizer.css">
+</head>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+<div class="container-vertical-flex" style="height:100%">
+    <div class="flex flex-3" style="background-color:aqua">
+        <div class="container-flex">
+            <div class="flex flex-1">
+                <div class="fields ui-corner-bottom" style="background-color:#1a1c22;">
+                    <div class="media-infor-content" style="width: 100%;">
+
+                    </div>
+                    <div id="player0" class="mejs-container mejs-video" style="height:300px; margin: auto;text-align:center;">
+
+                    </div>
+                    <script>
+                        var width = window.innerWidth;
+                        var height = window.innerHeight;
+                        if (height > 900) {
+
+                            $("#player0").height(450);
+                        }
+                    </script>                    
+                    <br />
+
+                    <form id="subTitleFormx">
+                        <div class="row" style="width:100%; text-align:center">
+                            <div id="timeTrim" style="height:40px;">
+                                <div id="status" style="height:14px;"></div>
+                                <div class="subTitleTime hidden">Sub in</div>
+                                <div id="startTimeSubCur" class="subTitleTime hidden" style="width: 65px; margin-left: 5px" converter="timeConverter"></div>
+                                <div class="subTitleTime  hidden">--></div>
+                                <div id="endTimeSubCur" class="subTitleTime hidden" style="width: 65px; margin-left: 5px" converter="timeConverter"></div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <select type="text" class="navbar-form-control" id="videoSpeedSelect">
+                                            <option value="1"> X1 </option>
+                                            <option value="4">X4</option>
+                                            <option value="8"> X8 </option>
+                                            <option value="16">X16</option>
+                                        </select>
+                                    </div>                                    
+                                    <div class="col-md-5">
+                                        <div class="hidden">
+                                            <input id="enabledSpectrum" checked="checked" type="checkbox" style="width: 17px">
+                                            <label onclick="changeEnabledSpectrum()" style="font-size: 11px">Spectrum</label>
+                                        </div>
+                                        <div id="timeCodeInput">
+                                            <input id="startTimeTrim" disabled="disabled" value="00:00:00:00" converter="timeConverter" style="border-radius: 3px;  border: 1.4px solid;" size="8" />
+                                            <span> : </span>
+                                            <input id="endTimeTrim" disabled="disabled" value="00:00:00:00" converter="timeConverter" style="border-radius: 3px;  border: 1.4px solid;" size="8" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="controls" style="width:100%; text-align:center">
+                                <button type="button" title="play" class="btn btn-default-outline" id="ppBtn">
+                                    <span class="icon">
+                                        <i class="icon icon-play "></i>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-default-outline" title="play as MarkIn, MarkOut" id="playBackBtn" style="margin-right: 25px">
+                                    <span class="icon">
+                                        <i class="icon icon-eye"></i>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-default-outline" title="to start" id="firstBtn">
+                                    <span class="icon">
+                                        <i class="icon icon-to-start "></i>
+                                    </span>
+                                </button>
+
+                                <button type="button" class="btn btn-default-outline" title="fast backward" id="ffbwBtn">
+                                    <span class="icon icon-stack">
+                                        <i class="icon-fast-backward icon-stack-1x" style="left: -0.125em"></i>
+                                        <i class="icon-fast-backward icon-stack-1x" style="left: 0.3em"></i>
+                                    </span>
+
+                                </button>
+
+                                <button type="button" class="btn btn-default-outline" title="backward" id="prevBtn">
+                                    <span class="icon">
+                                        <i class="icon icon-fast-backward "></i>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-default-outline" title="forward" id="fwdBtn">
+                                    <span class="icon">
+                                        <i class="icon icon-fast-forward "></i>
+                                    </span>
+                                </button>
+
+                                <button type="button" class="btn btn-default-outline" title="fast forward" id="fffwBtn">
+                                    <span class="icon icon-stack">
+                                        <i class="icon-fast-forward icon-stack-1x" style="left: -0.125em"></i>
+                                        <i class="icon-fast-forward icon-stack-1x" style="left: 0.3em"></i>
+                                    </span>
+                                </button>                               
+
+                                <button type="button" class="btn btn-default-outline" title="mark in" id="markInBtn">
+                                    <span class="icon">
+                                        <i class="icon icon-left-open"></i>
+                                    </span>
+                                </button>
+
+                                <button type="button" class="btn btn-default-outline" title="mark out" id="markOutBtn">
+                                    <span class="icon">
+                                        <i class="icon icon-right-open"></i>
+                                    </span>
+                                </button>                               
+                                <button type="button" class="btn btn-default-outline" title="save cut" id="btnSaveCut">
+                                    <span class="icon">
+                                        <i class="icon icon-floppy"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <br />
+                    </form>
+                </div>
+            </div>
+            <div class="flex flex-1"></div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+    <div class="flex flex-1" style="background-color: aquamarine">
+
     </div>
 </div>
