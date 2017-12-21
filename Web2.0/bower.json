@@ -5,6 +5,7 @@
     "bootstrap": "v3.3.7",
     "jquery-validation": "1.17.0",
     "requirejs": "2.3.5",
-    "domReady": "requirejs-domready#2.0.1"
+    "domReady": "requirejs-domready#2.0.1",
+    "ng-timeslider": "v0.0.9"
   }
 }

@@ -1,0 +1,34 @@
+{
+  "name": "ng-timeslider",
+  "homepage": "https://github.com/lfreneda/ng-timeslider",
+  "authors": [
+    "Luiz Freneda <lfreneda@gmail.com>"
+  ],
+  "description": "Angular directive for jQuery TimeSlider Plugin (https://github.com/v-v-vishnevskiy/timeslider)",
+  "main": [
+    "lib/timeslider.css",
+    "lib/timeslider.js",
+    "index.js"
+  ],
+  "moduleType": [],
+  "keywords": [
+    "timeslider",
+    "slider",
+    "ruler",
+    "cells",
+    "chronology",
+    "time",
+    "timeframe",
+    "frame"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

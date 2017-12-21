@@ -34,7 +34,7 @@
 
                             $("#player0").height(450);
                         }
-                    </script>                    
+                    </script>
                     <br />
 
                     <form id="subTitleFormx">
@@ -53,7 +53,7 @@
                                             <option value="8"> X8 </option>
                                             <option value="16">X16</option>
                                         </select>
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-5">
                                         <div class="hidden">
                                             <input id="enabledSpectrum" checked="checked" type="checkbox" style="width: 17px">
@@ -110,7 +110,7 @@
                                         <i class="icon-fast-forward icon-stack-1x" style="left: -0.125em"></i>
                                         <i class="icon-fast-forward icon-stack-1x" style="left: 0.3em"></i>
                                     </span>
-                                </button>                               
+                                </button>
 
                                 <button type="button" class="btn btn-default-outline" title="mark in" id="markInBtn">
                                     <span class="icon">
@@ -122,7 +122,7 @@
                                     <span class="icon">
                                         <i class="icon icon-right-open"></i>
                                     </span>
-                                </button>                               
+                                </button>
                                 <button type="button" class="btn btn-default-outline" title="save cut" id="btnSaveCut">
                                     <span class="icon">
                                         <i class="icon icon-floppy"></i>
@@ -134,11 +134,43 @@
                     </form>
                 </div>
             </div>
-            <div class="flex flex-1"></div>
+            <div class="flex flex-1">
+                <div id="tabs">
+                    <ul>
+                        <li id="tabBtn1"><a href="#tabs-1">File phụ đề</a></li>
+                        <li id="tabBtn2"><a href="#tabs-2">Lịch phụ đề</a></li>
+                        <li id="tabBtn3"><a href="#tabs-3">Lịch ghi Lowres</a></li>
+                    </ul>
+                    <div id="tabs-1" class="content">
+                        <button class="btnGeneral" id="btnAddFolder">Thêm thư mục...</button>
+                        <div class="css-treeview">
+                            <ul id="folderUl" class="folders"></ul>
+                        </div>
+                        <input type="file" id="FileUpload1" />
+                    </div>
+                    <div id="tabs-2">
+                        <ul id="ulSubSchedule"></ul>
+                    </div>
+                    <div id="tabs-3">
+                        <button class="btnGeneral" id="btnAddRecord">Thêm lịch...</button>
+                        <table class="MyTable" id="recordScheduleTable"></table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script>$('#tabs').tabs();</script>
     <div class="flex flex-1" style="background-color: aquamarine">
-
+        <div style="margin: 10px 10px;">
+            <h3>Zoom:</h3>
+            <div id="zoomBar">
+                <div id="zoomIn">IN</div>
+                <div id="zoomOut">OUT</div>
+            </div>
+            <div id="zoom-slider123"></div>
+        </div>
+        <div id="slider123" class="time-slider"></div>
+        <p id="messages"></p>
     </div>
 </div>
 <script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="timeSliderDemoApp">
+<head>
+    <meta charset="utf-8">
+    <title>Angular TimeSlider Directive Demo</title>
+    <meta name="description" content="TimeSlider Plugin for jQuery">
+    <meta name="keywords"
+          content="angularjs, angular, ng, ng-timeslider, timeslider, time-slider, time slider, rangeslider, range-slider, range slider, jquery, javascript">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="../lib/timeslider.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body ng-controller="MainCtrl as vm">
+
+<div style="margin: 50px 30px;">
+    <div ng-time-slider
+         cells="cells"
+         start-at="startAt"
+         cell-prefix-label="prefix"
+         id="slider123"
+         class="time-slider"></div>
+</div>
+
+<div>
+    <button ng-disabled="disableAddButton" ng-click="addCell();">add cell</button>
+    <button ng-disabled="disableChangeDateButton" ng-click="changeDate();">change date</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+<script src="../lib/timeslider.js"></script>
+<script src="../bower_components/moment/moment.js"></script>
+<script src="../bower_components/angular-moment/angular-moment.js"></script>
+<script src="../index.js"></script>
+
+<script type="text/javascript">
+    var app = angular.module('timeSliderDemoApp', ['angularMoment', 'ngTimeSlider']);
+    app.controller('MainCtrl', function($scope, moment) {
+
+        $scope.$on('event:cell-clicked', function (event, cell) {
+            alert(cell.id);
+        });
+
+        function toTimestamp(momentDate) {
+            return momentDate.toDate().getTime();
+        }
+
+        var startAt = moment().startOf('day').add(-3, 'h');
+        var dayInit = startAt.clone().add(3, 'h');
+
+        $scope.startAt = toTimestamp(startAt);
+
+        $scope.cells = [
+            {
+                '_id': 'c1',
+                'start': toTimestamp(dayInit.clone().add(5, 'h')),
+                'stop': toTimestamp(dayInit.clone().add(7, 'h')),
+                'style': {
+                    'background-color': '#2196F3'
+                }
+            },
+            {
+                '_id': 'c2',
+                'start': toTimestamp(dayInit.clone().add(10, 'h')),
+                'stop': toTimestamp(dayInit.clone().add(15, 'h')),
+                'style': {
+                    'background-color': '#2196F3'
+                }
+            }
+        ];
+
+        $scope.changeDate = function() {
+            $scope.disableChangeDateButton = true;
+            $scope.startAt = toTimestamp(startAt.clone().add(1, 'd'));
+        };
+
+        $scope.addCell = function() {
+            $scope.disableAddButton = true;
+            $scope.cells.push({
+                '_id': 'c3',
+                'start': toTimestamp(dayInit.clone().add(18, 'h')),
+                'stop': toTimestamp(dayInit.clone().add(19, 'h')),
+                'style': {
+                    'background-color': '#2196F3'
+                }
+            });
+        };
+    });
+</script>
+</body>
+</html>
