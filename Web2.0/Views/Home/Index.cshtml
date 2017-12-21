@@ -2,9 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>    
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
     
-    <script src="~/lib/kendo/js/kendo.all.min.js"></script>
     <script type="text/javascript" src="~/js/player/subTitle.js"></script>
     <script type="text/javascript" src="~/js/player/timecode.js"></script>
     <script type="text/javascript" src="~/js/player/mediaelement.js"></script>
@@ -14,7 +13,7 @@
     <link rel="stylesheet" href="~/css/player/subtitle.css">
     <link rel="stylesheet" href="/css/player/player.css">
     <link rel="stylesheet" href="/css/player/mediaelementplayer.css">
-    <link rel="stylesheet" href="/css/player/audioVisualizer.css">
+    <link rel="stylesheet" href="/css/player/audioVisualizer.css">    
 </head>
 
 <div class="container-vertical-flex" style="height:100%">
@@ -136,31 +135,36 @@
                 </div>
             </div>
             <div class="flex flex-1">
-                <div id="tabs">
+                <div id="tabstrip">
                     <ul>
-                        <li id="tabBtn1"><a href="#tabs-1">File phụ đề</a></li>
-                        <li id="tabBtn2"><a href="#tabs-2">Lịch phụ đề</a></li>
-                        <li id="tabBtn3"><a href="#tabs-3">Lịch ghi Lowres</a></li>
+                        <li class="k-state-active">
+                            Paris
+                        </li>
+                        <li>
+                            New York
+                        </li>
+                        <li>
+                            London
+                        </li>
+                        <li>
+                            Moscow
+                        </li>
                     </ul>
-                    <div id="tabs-1" class="content">
-                        <button class="btnGeneral" id="btnAddFolder">Thêm thư mục...</button>
-                        <div class="css-treeview">
-                            <ul id="folderUl" class="folders"></ul>
-                        </div>
-                        <input type="file" id="FileUpload1" />
-                    </div>
-                    <div id="tabs-2">
-                        <ul id="ulSubSchedule"></ul>
-                    </div>
-                    <div id="tabs-3">
-                        <button class="btnGeneral" id="btnAddRecord">Thêm lịch...</button>
-                        <table class="MyTable" id="recordScheduleTable"></table>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>$('#tabs').tabs();</script>
+    <script>
+        $(document).ready(function () {
+            $("#tabstrip").kendoTabStrip({
+                animation: {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                }
+            });
+        });
+    </script>
     <div class="flex flex-1" style="background-color: aquamarine">
         <div style="margin: 10px 10px;">
             <h3>Zoom:</h3>
@@ -188,7 +192,7 @@
     };
     loadPlayer(_playerOptions);
     hdplayer.addType = 1;
-    initControlButtons();    
+    initControlButtons();
 
     function getFileNameFromPath(path) {
         path = path.replace(/\\/g, "/").replace(/\/\//g, "/");
