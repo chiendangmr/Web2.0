@@ -2,8 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
+    <link rel="stylesheet" href="~/lib/jquery-ui/themes/base/jquery-ui.css" />
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-    
+    <script type="text/javascript" src="~/lib/jquery-ui/jquery-ui.js"></script>
+
     <script type="text/javascript" src="~/js/player/subTitle.js"></script>
     <script type="text/javascript" src="~/js/player/timecode.js"></script>
     <script type="text/javascript" src="~/js/player/mediaelement.js"></script>
@@ -13,7 +15,7 @@
     <link rel="stylesheet" href="~/css/player/subtitle.css">
     <link rel="stylesheet" href="/css/player/player.css">
     <link rel="stylesheet" href="/css/player/mediaelementplayer.css">
-    <link rel="stylesheet" href="/css/player/audioVisualizer.css">    
+    <link rel="stylesheet" href="/css/player/audioVisualizer.css">
 </head>
 
 <div class="container-vertical-flex" style="height:100%">
@@ -135,36 +137,27 @@
                 </div>
             </div>
             <div class="flex flex-1">
-                <div id="tabstrip">
+                <div id="tabs">
                     <ul>
-                        <li class="k-state-active">
-                            Paris
-                        </li>
-                        <li>
-                            New York
-                        </li>
-                        <li>
-                            London
-                        </li>
-                        <li>
-                            Moscow
-                        </li>
+                        <li><a href="#tabs-1">Nunc tincidunt</a></li>
+                        <li><a href="#tabs-2">Proin dolor</a></li>
+                        <li><a href="#tabs-3">Aenean lacinia</a></li>
                     </ul>
+                    <div id="tabs-1">
+                        <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                    </div>
+                    <div id="tabs-2">
+                        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                    </div>
+                    <div id="tabs-3">
+                        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $("#tabstrip").kendoTabStrip({
-                animation: {
-                    open: {
-                        effects: "fadeIn"
-                    }
-                }
-            });
-        });
-    </script>
+
     <div class="flex flex-1" style="background-color: aquamarine">
         <div style="margin: 10px 10px;">
             <h3>Zoom:</h3>
@@ -179,129 +172,133 @@
     </div>
 </div>
 <script>
+    require(["jquery"], function () {
 
-    _basePath = "";
-    _translator = {};
-    _playerOptions = {
-        "safetyFrame": false, "currentTime": false, "initVisualizer": false, "hiddenVuMeter": true, "hiddenSpectrum": true,
-        "originUrl": "/origin/",
-        "tempUrl": "/temp/",
-        "startTime": "00:00:00.00", "endTime": "00:56:37.21",
-        "startTimeOffset": "00:00:00.00", "endTimeOffset": "00:56:37.21",
-        "src": "/Videos/TVC/placeHolder.mp4"
-    };
-    loadPlayer(_playerOptions);
-    hdplayer.addType = 1;
-    initControlButtons();
+        $('#tabs').tabs();
 
-    function getFileNameFromPath(path) {
-        path = path.replace(/\\/g, "/").replace(/\/\//g, "/");
-        var arr = path.split("/");
-        var fileName = path;
-        if (arr.length > 0) {
-            fileName = arr[arr.length - 1];
-        }
-        return fileName;
-    }
+        _basePath = "";
+        _translator = {};
+        _playerOptions = {
+            "safetyFrame": false, "currentTime": false, "initVisualizer": false, "hiddenVuMeter": true, "hiddenSpectrum": true,
+            "originUrl": "/origin/",
+            "tempUrl": "/temp/",
+            "startTime": "00:00:00.00", "endTime": "00:56:37.21",
+            "startTimeOffset": "00:00:00.00", "endTimeOffset": "00:56:37.21",
+            "src": "/Videos/TVC/placeHolder.mp4"
+        };
+        loadPlayer(_playerOptions);
+        hdplayer.addType = 1;
+        initControlButtons();
 
-
-    function mobilecheck() {
-        return false;
-    }
-
-    _disConvertSubToHtml = true;
-    _allSubItems = [{ "itemId": "21652", "startTime": "00:12:23.07", "endTime": "00:16:48.18", "type": 1, "text": "", "startTimeFloat": 743.28, "subIndex": 0, "fullName": "Lê Văn Thành", "subtitleId": "154", "userId": 1 }, { "itemId": "21653", "startTime": "00:20:13.13", "endTime": "00:22:37.15", "type": 1, "text": "comment", "startTimeFloat": 1213.52, "subIndex": 0, "fullName": "Lê Văn Thành", "subtitleId": "154", "userId": 1 }];
-    _subItems = _allSubItems;
-
-    _eventType = { "enabledSubtitle": false, "enabledQc": true, "enabledSecondaryEvent": false };
-    function checkCookies() {
-        return false;
-    }
-
-    function checkEnabledVu(that) {
-        var checked = $(that).attr("checked");
-        if (typeof checked != "undefined" && (checked === "checked" || checked === true)) {
-            if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
-                hdplayer.audioVisual.options.vuDisabled = false;
-                $(".vu_meter").css("visibility", "visible");
+        function getFileNameFromPath(path) {
+            path = path.replace(/\\/g, "/").replace(/\/\//g, "/");
+            var arr = path.split("/");
+            var fileName = path;
+            if (arr.length > 0) {
+                fileName = arr[arr.length - 1];
             }
-            $.cookie("vu_meter_disabled", "false", { 'expires': 14 });
-        } else {
-            if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
-                hdplayer.audioVisual.options.vuDisabled = true;
-                hdplayer.audioVisual.clearVu();
+            return fileName;
+        }
+
+
+        function mobilecheck() {
+            return false;
+        }
+
+        _disConvertSubToHtml = true;
+        _allSubItems = [{ "itemId": "21652", "startTime": "00:12:23.07", "endTime": "00:16:48.18", "type": 1, "text": "", "startTimeFloat": 743.28, "subIndex": 0, "fullName": "Lê Văn Thành", "subtitleId": "154", "userId": 1 }, { "itemId": "21653", "startTime": "00:20:13.13", "endTime": "00:22:37.15", "type": 1, "text": "comment", "startTimeFloat": 1213.52, "subIndex": 0, "fullName": "Lê Văn Thành", "subtitleId": "154", "userId": 1 }];
+        _subItems = _allSubItems;
+
+        _eventType = { "enabledSubtitle": false, "enabledQc": true, "enabledSecondaryEvent": false };
+        function checkCookies() {
+            return false;
+        }
+
+        function checkEnabledVu(that) {
+            var checked = $(that).attr("checked");
+            if (typeof checked != "undefined" && (checked === "checked" || checked === true)) {
+                if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
+                    hdplayer.audioVisual.options.vuDisabled = false;
+                    $(".vu_meter").css("visibility", "visible");
+                }
+                $.cookie("vu_meter_disabled", "false", { 'expires': 14 });
+            } else {
+                if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
+                    hdplayer.audioVisual.options.vuDisabled = true;
+                    hdplayer.audioVisual.clearVu();
+                }
+                $.cookie("vu_meter_disabled", "true", { 'expires': 14 });
+                $(".vu_meter").css("visibility", "hidden");
             }
-            $.cookie("vu_meter_disabled", "true", { 'expires': 14 });
-            $(".vu_meter").css("visibility", "hidden");
         }
-    }
 
-    function checkEnabledSpectrum(that) {
-        var checked = $(that).attr("checked");
-        if (typeof checked != "undefined" && (checked == "checked" || checked === true)) {
-            if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
-                hdplayer.audioVisual.options.drumDisabled = false;
-                $("#fft").css("visibility", "visible");
+        function checkEnabledSpectrum(that) {
+            var checked = $(that).attr("checked");
+            if (typeof checked != "undefined" && (checked == "checked" || checked === true)) {
+                if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
+                    hdplayer.audioVisual.options.drumDisabled = false;
+                    $("#fft").css("visibility", "visible");
+                }
+                $.cookie("spectrum_disabled", "false", { 'expires': 14 });
+            } else {
+                if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
+                    hdplayer.audioVisual.options.drumDisabled = true;
+                    hdplayer.audioVisual.clearDrum();
+                }
+                $.cookie("spectrum_disabled", "true", { 'expires': 14 });
+                $("#fft").css("visibility", "hidden");
             }
-            $.cookie("spectrum_disabled", "false", { 'expires': 14 });
-        } else {
-            if (typeof hdplayer != "undefined" && typeof hdplayer.audioVisual != "undefined") {
-                hdplayer.audioVisual.options.drumDisabled = true;
-                hdplayer.audioVisual.clearDrum();
+        }
+        function changeEnabledVu() {
+            var that = $("#enabledVuMeter");
+            var checked = that.attr("checked");
+            if (typeof checked != "undefined" && (checked === "checked" || checked === true)) {
+                that.attr("checked", false);
+            } else {
+                that.attr("checked", "checked");
             }
-            $.cookie("spectrum_disabled", "true", { 'expires': 14 });
-            $("#fft").css("visibility", "hidden");
+            checkEnabledVu(that);
         }
-    }
-    function changeEnabledVu() {
-        var that = $("#enabledVuMeter");
-        var checked = that.attr("checked");
-        if (typeof checked != "undefined" && (checked === "checked" || checked === true)) {
-            that.attr("checked", false);
-        } else {
-            that.attr("checked", "checked");
+        function changeEnabledSpectrum() {
+            var that = $("#enabledSpectrum");
+            var checked = that.attr("checked");
+            if (typeof checked != "undefined" && (checked === "checked" || checked === true)) {
+                that.attr("checked", false);
+            } else {
+                that.attr("checked", "checked");
+            }
+            try {
+                checkEnabledSpectrum(that);
+            } catch (e) {
+                console.log(e);
+            }
         }
-        checkEnabledVu(that);
-    }
-    function changeEnabledSpectrum() {
-        var that = $("#enabledSpectrum");
-        var checked = that.attr("checked");
-        if (typeof checked != "undefined" && (checked === "checked" || checked === true)) {
-            that.attr("checked", false);
-        } else {
-            that.attr("checked", "checked");
-        }
-        try {
-            checkEnabledSpectrum(that);
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
-    function checkEnabledSubtile(that) {
-        var checked = $(that).attr("checked");
-        if (typeof checked != "undefined" && (checked == "checked" || checked === true)) {
-            $("#subtitlePreview").removeClass("hidden");
-        } else {
-            $("#subtitlePreview").addClass("hidden");
+        function checkEnabledSubtile(that) {
+            var checked = $(that).attr("checked");
+            if (typeof checked != "undefined" && (checked == "checked" || checked === true)) {
+                $("#subtitlePreview").removeClass("hidden");
+            } else {
+                $("#subtitlePreview").addClass("hidden");
+            }
         }
-    }
 
-    function initFormControl() {
-        checkCookies();
-        $("#enabledVuMeter").change(function () { checkEnabledVu(this) });
-        $("#enabledSpectrum").change(function () {
-            var that = this;
-            checkEnabledSpectrum(that);
-        });
-        $("#videoSpeedSelect").change(function () {
-            hdplayer.play();
-            hdplayer.rate(parseInt($(this).val()));
-            _rate = $(this).val();
-        });
+        function initFormControl() {
+            checkCookies();
+            $("#enabledVuMeter").change(function () { checkEnabledVu(this) });
+            $("#enabledSpectrum").change(function () {
+                var that = this;
+                checkEnabledSpectrum(that);
+            });
+            $("#videoSpeedSelect").change(function () {
+                hdplayer.play();
+                hdplayer.rate(parseInt($(this).val()));
+                _rate = $(this).val();
+            });
 
-    }
-    if (!window.mobilecheck()) {
-        initFormControl();
-    }
+        }
+        if (!window.mobilecheck()) {
+            initFormControl();
+        }
+    });
 </script>

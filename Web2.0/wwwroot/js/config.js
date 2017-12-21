@@ -1,6 +1,7 @@
 ﻿require.config({
     baseUrl: 'lib',
-    paths: {        
+    paths: {  
+        defineBase: '../js/defineBase',
         'domReady': 'domReady/domReady',
         'jquery': "jquery/dist/jquery",        
         'bootstrap': "bootstrap/dist/js/bootstrap",        
